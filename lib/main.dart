@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'interface/textFieldAtom.dart';
+import 'interface/text_field_atom.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'presentation/text_field_controller.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -7,7 +9,11 @@ void main() {
     initialRoute: '/',
     routes: {
       '/': (context) => Home(),
-      '/TextField': (context) => TextFieldAtom(),
+      '/TextField': (context) =>
+          StateNotifierProvider<TextFieldStateNotifier, TextFieldState>(
+            create: (_) => TextFieldStateNotifier(),
+            child: TextFieldAtom(),
+          ),
     },
   ));
 }
